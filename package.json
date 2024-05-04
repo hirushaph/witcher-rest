@@ -1,0 +1,32 @@
+{
+  "name": "witcher-rest",
+  "version": "0.0.1",
+  "description": "Simple rest api for get witcher character details",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "@cloudflare/itty-router-openapi": "^1.0.1",
+    "@tsndr/cloudflare-worker-jwt": "^2.5.3",
+    "bcryptjs": "^2.4.3",
+    "realm-web": "^2.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240502.0",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20.5.7",
+    "@types/service-worker-mock": "^2.0.1",
+    "wrangler": "^3.0.0"
+  },
+  "keywords": [
+    "the witcher rest",
+    "the witcher",
+    "the witcher api",
+    "witcher characters api"
+  ],
+  "author": "hirushaph"
+}
