@@ -45,7 +45,8 @@ export async function insertDocumentWithAutoIncrement(
   document: UpdateCharacterType
 ) {
   const id = await getNextSequenceValue(db, "characters");
-  document.id = id;
-  const data = await db.collection("casts").insertOne(document);
+
+  const newDoc = { id, ...document };
+  const data = await db.collection("casts").insertOne(newDoc);
   return data;
 }
