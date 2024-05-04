@@ -49,9 +49,7 @@ export class GetCharacter extends OpenAPIRoute {
 
     const collection = mongo.db("witcher").collection("casts");
 
-    console.log(chId);
-
-    const dbData = await collection.findOne({ id: chId });
+    const dbData = await collection.findOne({ id: parseInt(chId) });
     console.log(dbData);
 
     if (!dbData || dbData === null)
