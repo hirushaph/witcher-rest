@@ -7,7 +7,8 @@
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
     "start": "wrangler dev",
-    "cf-typegen": "wrangler types"
+    "cf-typegen": "wrangler types",
+    "commit":"cz"
   },
   "dependencies": {
     "@cloudflare/itty-router-openapi": "^1.0.1",
@@ -18,8 +19,10 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240502.0",
     "@types/bcryptjs": "^2.4.6",
+    "@types/cookie": "^0.6.0",
     "@types/node": "^20.5.7",
     "@types/service-worker-mock": "^2.0.1",
+    "commitizen": "^4.3.0",
     "wrangler": "^3.0.0"
   },
   "keywords": [
