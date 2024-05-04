@@ -66,7 +66,7 @@ export class Register extends OpenAPIRoute {
 
       console.log(isUserExits);
 
-      if (!isUserExits || isUserExits === null)
+      if (isUserExits || !isUserExits === null)
         return errorResponse(400, {
           error: "User name unavaliable, please use another username",
         });
@@ -107,12 +107,12 @@ export class Register extends OpenAPIRoute {
         },
         {
           headers: {
-            "Set-Cookie": `acsessKey=${token}; Path=/; HttpOnly`,
+            "Set-Cookie": `accessKey=${token}; Path=/; HttpOnly`,
           },
         }
       );
     } catch (error) {
-      return errorResponse(error.statusCode, { error: error.statusText });
+      return errorResponse(400, { error: error.statusText });
     }
   }
 }

@@ -55,7 +55,7 @@ export class Login extends OpenAPIRoute {
     const mongo = appState.getDbConnection();
 
     const db = mongo.db("witcher");
-    const collection = db.collection("casts");
+    const collection = db.collection("users");
 
     // check if user already exits
     const user = await collection.findOne({ username: reqData.username });
@@ -90,7 +90,7 @@ export class Login extends OpenAPIRoute {
       },
       {
         headers: {
-          "Set-Cookie": `acsessKey=${token}; Path=/; HttpOnly`,
+          "Set-Cookie": `accessKey=${token}; Path=/; HttpOnly`,
         },
       }
     );

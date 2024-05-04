@@ -1,4 +1,5 @@
 import { OpenAPIRouter } from "@cloudflare/itty-router-openapi";
+
 import { GetAllCharacters } from "endpoints/getAllCharacters";
 import { checkDbConnection } from "middleware/checkDbConnection";
 import { AddCharacter } from "endpoints/addCharacter";
@@ -7,6 +8,7 @@ import { errorResponse } from "utils/response";
 import { UpdateCharacter } from "endpoints/UpdateCharacter";
 import { Login } from "endpoints/Login";
 import { Register } from "endpoints/Register";
+import { authorization } from "middleware/authorization";
 
 const router = OpenAPIRouter({
   docs_url: "/docs",
@@ -38,8 +40,8 @@ router.all("/api/*", checkDbConnection);
 // The witcher routes
 router.get("/api/v1/characters/", GetAllCharacters);
 router.get("/api/v1/character/:chId/", GetCharacter);
-router.post("/api/v1/characters/add/", AddCharacter);
-router.put("/api/v1/characters/update/", UpdateCharacter);
+router.post("/api/v1/characters/add/", authorization, AddCharacter);
+router.put("/api/v1/characters/update/", authorization, UpdateCharacter);
 
 // Auth routes
 router.post("/api/v1/auth/login/", Login);
