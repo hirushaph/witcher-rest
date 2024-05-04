@@ -45,6 +45,11 @@ export class GetAllCharacters extends OpenAPIRoute {
 
     const dbData = await collection.find();
 
-    return response(200, { characters: dbData });
+    const newData = dbData.map((chr) => {
+      const { _id, ...rest } = chr;
+      return rest;
+    });
+
+    return response(200, { characters: newData });
   }
 }
