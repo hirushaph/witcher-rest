@@ -22,6 +22,11 @@ export async function authorization(request: Request, env: any, context: any) {
     const isValid = await jwt.verify(accessKey, env.JWT_SECRET);
 
     if (!isValid) return errorResponse(401, { error: "Auth Failed" });
+
+    // Decode token get user details
+    const { payload } = jwt.decode(accessKey);
+
+    context.user = payload;
     return;
   } catch (error) {
     return errorResponse(401, { error: "Auth failed" });

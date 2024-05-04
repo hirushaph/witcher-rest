@@ -74,7 +74,7 @@ export class Login extends OpenAPIRoute {
       return errorResponse(400, { error: "Username or password wrong" });
 
     const token = await jwt.sign(
-      { username: reqData.username, email: reqData.password },
+      { username: user.username, role: user.role },
       env.JWT_SECRET
     );
 

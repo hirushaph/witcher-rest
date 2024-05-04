@@ -1,5 +1,5 @@
 import * as Realm from "realm-web";
-import { Character } from "types";
+import { Character, UpdateCharacterType } from "types";
 
 import appState from "utils/state";
 
@@ -42,7 +42,7 @@ async function getNextSequenceValue(
 // Function to insert a document with an auto-incremented ID
 export async function insertDocumentWithAutoIncrement(
   db: any,
-  document: Character
+  document: UpdateCharacterType
 ) {
   const id = await getNextSequenceValue(db, "characters");
   document.id = id;
