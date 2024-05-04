@@ -71,8 +71,6 @@ export class Register extends OpenAPIRoute {
           error: "User name unavaliable, please use another username",
         });
 
-      // check password
-
       // Hash password
       const salt = bcrypt.genSaltSync(10);
 
@@ -80,20 +78,25 @@ export class Register extends OpenAPIRoute {
 
       if (!hash) return errorResponse(500, { error: "Server Error" });
 
+      // User object
+      const createUser = {
+        username: reqData.username,
+        password: hash,
+        role: "user",
+        contributions: [],
+      };
+
       // Generate JWT Token
 
       const token = await jwt.sign(
-        { username: reqData.username, email: reqData.password },
+        { username: createUser.username, role: createUser.role },
         env.JWT_SECRET
       );
       if (!token) return errorResponse(500, { error: "Server Error" });
 
       // save user to db
 
-      const user = await collection.insertOne({
-        username: reqData.username,
-        password: hash,
-      });
+      const user = await collection.insertOne(createUser);
 
       if (!user) return errorResponse(500, { error: "Server Error" });
 
